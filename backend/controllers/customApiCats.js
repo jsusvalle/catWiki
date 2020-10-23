@@ -1,5 +1,34 @@
 const Breeds = require('../model/breedsMostSearched');
-const {searchBreedByName, searchImagesBreed} = require('../api/apiService');
+const {searchBreeds, searchBreedByName, searchImagesBreed} = require('../api/apiService');
+
+exports.searchTermBreeds = async (req, res) => {
+    let searchTerm = req.query.term || 's';
+
+    if(typeof searchTerm !== 'string') {
+        return res.status(400).json({
+            ok: false,
+            error: {
+                message: 'Bad Request'
+            }
+        });
+    }
+
+    try {
+        const result = await searchBreeds(searchTerm);
+        res.status(200).json({
+            ok: true,
+            breeds: result
+        });
+    } catch (err) {
+        return res.status(500).json({
+            ok: false,
+            error: {
+                message: 'Internal Server Error'
+            },
+        });
+    }
+
+}
 
 exports.getMostSearchBreeds = async (req, res) => {
 

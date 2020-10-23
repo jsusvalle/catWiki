@@ -1,8 +1,14 @@
 const {Router} = require('express');
-const { getMostSearchBreeds, getBreedsByName, getImagesBreed } = require('../controllers/customApiCats');
+const { 
+    searchTermBreeds, 
+    getMostSearchBreeds, 
+    getBreedsByName, 
+    getImagesBreed 
+} = require('../controllers/customApiCats');
 
 const router = Router();
 
+router.get('/searchbyname', searchTermBreeds);
 router.get('/mostsearched', getMostSearchBreeds);
 router.get('/search', getBreedsByName);
 router.get('/searchimage', getImagesBreed);
