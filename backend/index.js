@@ -10,12 +10,13 @@ const app = express();
 
 connectDB();
 
+app.use(cors());
 app.use(express.json({ extended: true }));
-
-const PORT = process.env.PORT || 4000;
 
 app.use('/api/breeds', apiRoutes);
 
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Working in port: ${PORT}`);
 });
