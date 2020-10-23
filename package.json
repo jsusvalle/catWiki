@@ -1,0 +1,19 @@
+{
+  "name": "catwiki",
+  "version": "1.0.0",
+  "description": "FullStack Aplicattion",
+  "main": "index.js",
+  "scripts": {
+    "start": "export NODE_ENV=production && node backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsusvalle/catWiki.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsusvalle/catWiki/issues"
+  },
+  "homepage": "https://github.com/jsusvalle/catWiki#readme"
+}
