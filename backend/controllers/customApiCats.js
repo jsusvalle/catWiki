@@ -2,7 +2,7 @@ const Breeds = require('../model/breedsMostSearched');
 const {searchBreeds, searchBreedByName, searchImagesBreed} = require('../api/apiService');
 
 exports.searchTermBreeds = async (req, res) => {
-    let searchTerm = req.query.term || 's';
+    let searchTerm = req.query.term || 'a';
 
     if(typeof searchTerm !== 'string') {
         return res.status(400).json({
@@ -27,7 +27,6 @@ exports.searchTermBreeds = async (req, res) => {
             },
         });
     }
-
 }
 
 exports.getMostSearchBreeds = async (req, res) => {
@@ -39,7 +38,9 @@ exports.getMostSearchBreeds = async (req, res) => {
         if(err) {
             return res.status(500).json({
                 ok: false,
-                err
+                error: {
+                    message: error
+                }
             });
         }
 
