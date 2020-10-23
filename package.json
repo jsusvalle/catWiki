@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/jsusvalle/catWiki/issues"
   },
-  "homepage": "https://github.com/jsusvalle/catWiki#readme"
+  "homepage": "https://github.com/jsusvalle/catWiki#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.10"
+  }
 }
