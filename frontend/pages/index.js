@@ -3,6 +3,8 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import Layout from '../components/layouts/Layout';
 
+import BreedPopularIndex from '../components/BreedPopularIndex';
+
 import {CatWikiContext} from '../context/CatWikiContext';
 
 const ImageBackground = styled.div`
@@ -150,32 +152,6 @@ const SectionMostSearched = styled.section`
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
   width: 100%;
-  p {
-    padding-top: 2rem;
-    margin-left: 3rem;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--brown-text);
-    @media (min-width: 768px) {
-      font-size: 1.5rem;
-      padding-top: 3rem;
-      margin-left: 7rem;
-    }
-    @media (min-width: 1024px) {
-      font-size: 1.8rem;
-      padding-top: 5rem;
-      margin-left: 10rem; 
-    }
-    &::after {
-      content: '';
-      display: block;
-      margin-top: 1rem;
-      width: 7rem;
-      height: 0.3rem;
-      border-radius: 3rem;
-      background-color: var(--brown-text);
-    }
-  }  
 
   .container-section {
     margin: 0 auto;
@@ -190,19 +166,57 @@ const SectionMostSearched = styled.section`
   }
 `;
 
+const TextMostSearched = styled.p`
+  padding-top: 2rem;
+  margin-left: 3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--brown-text);
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    padding-top: 3rem;
+    margin-left: 7rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.8rem;
+    padding-top: 5rem;
+    margin-left: 10rem; 
+  }
+  &::after {
+    content: '';
+    display: block;
+    margin-top: 1rem;
+    width: 7rem;
+    height: 0.3rem;
+    border-radius: 3rem;
+    background-color: var(--brown-text);
+  }
+`;
+
 const SectionCatsDiscover = styled.div`
+  padding: 5rem 0 10rem 0;
   margin: 0 auto;
   width: 83%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const Home = () => {
 
+  const [popularbreeds, savePopularBreeds] = useState([]);
+
   const {callApiCat} = useContext(CatWikiContext);
 
   useEffect (() => {
-    callApiCat();
+    const consultApi = async () => {
+      let imagesPopularBreeds = await callApiCat();
+      savePopularBreeds(imagesPopularBreeds);
+    }
+    consultApi();
   }, []);
 
   return (
@@ -221,7 +235,7 @@ const Home = () => {
         </ImageBackground>
 
         <SectionMostSearched>
-          <p>Most Searched Breeds</p>
+          <TextMostSearched>Most Searched Breeds</TextMostSearched>
 
           <div className="container-section">
             <ContainerSectionTitle>
@@ -235,7 +249,12 @@ const Home = () => {
           </div>
 
           <SectionCatsDiscover>
-            
+            {popularbreeds && popularbreeds.map(imagesCat => (
+              <BreedPopularIndex
+                key={imagesCat.breedId}
+                imagesCat={imagesCat}
+              />
+            ))}
           </SectionCatsDiscover>
         </SectionMostSearched>
       </Layout>

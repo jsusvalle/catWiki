@@ -5,14 +5,17 @@ export const CatWikiContext = createContext();
 
 const CatWikiProvider = props => {
 
-    const api_key = '70f5a5a7-893d-4c53-afd3-df9743015902';
-    axios.defaults.headers.common['x-api-key'] = api_key;
+    //* Most searched: /api/breeds/mostsearched?limit=4
+    //* get Info Breed: /api/breeds/search?name=Bengal
+    //* get images Breed: /api/breeds/searchimage?idBreed=beng?limit=2
+    //* get search name of breeds: /api/breeds/searchbyname?term=burmese
 
+    const urlApi = 'https://cat-wiki-api.herokuapp.com';
 
     const callApiCat = async () => {
         try {
-            let data = await axios.get(`https://api.thecatapi.com/v1/breeds?limit=4`);
-            console.log(data);
+            let res = await axios.get(`${urlApi}/api/breeds/mostsearched?limit=4`);
+            return res.data.breeds;
         } catch (error) {
             console.log(error);
         }
