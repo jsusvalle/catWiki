@@ -200,8 +200,38 @@ const SectionCatsDiscover = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+const SectionArticle = styled.section`
+  border: 1px solid red;
+  padding: 7rem 0;
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ${ContainerSectionTitle} {
+    h2::before {
+      content: '';
+      display: block;
+      margin-top: 1rem;
+      width: 7rem;
+      height: 0.3rem;
+      border-radius: 3rem;
+      background-color: var(--brown-text);
+    }
+    p {
+      font-weight: 500;
+    }
+  }
+
+  .container-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
   }
 `;
 
@@ -257,6 +287,21 @@ const Home = () => {
             ))}
           </SectionCatsDiscover>
         </SectionMostSearched>
+
+        <SectionArticle>
+          <ContainerSectionTitle>
+            <h2>Why should you have a cat?</h2>
+            <p>Having a cat around you can actually trigger the release of calming chemicals in your body which lower your stress and anxiety leves</p>
+            <Link href="/">
+              <ContainerSectionButton>Read more <i className="material-icons">arrow_right_alt</i></ContainerSectionButton>
+            </Link> 
+          </ContainerSectionTitle>
+          <div className="container-images">
+            <img src="/static/images/image2.png" alt=""/>
+            <img src="/static/images/image3.png" alt=""/>
+            <img src="/static/images/image1.png" alt=""/>
+          </div>
+        </SectionArticle>
       </Layout>
   )
 }

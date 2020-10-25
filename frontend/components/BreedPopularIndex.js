@@ -14,8 +14,10 @@ const ContainerImage = styled.div`
 
 const ImageCat = styled.img`
     border-radius: 3rem;
-    width: 100%;
-    height: 22rem;
+    height: 15rem;
+    @media (min-width: 1024px) {
+        height: 22rem;
+    }
 `;
 
 const BreedPopularIndex = ({imagesCat}) => {
