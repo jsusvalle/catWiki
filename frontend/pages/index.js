@@ -1,11 +1,18 @@
 import React, {useEffect, useState, useContext} from 'react'
 import Link from 'next/link';
 import styled from '@emotion/styled';
-import Layout from '../components/layouts/Layout';
+import { css } from '@emotion/core';
 
+import Layout from '../components/layouts/Layout';
 import BreedPopularIndex from '../components/BreedPopularIndex';
 
 import {CatWikiContext} from '../context/CatWikiContext';
+
+const breakpointsMediaQuerys = [481, 769, 1025, 1201]
+
+const mq = breakpointsMediaQuerys.map(
+  bp => `@media (min-width: ${bp}px)`
+)
 
 const ImageBackground = styled.div`
   background-image: url('/static/images/HeroImagesm.png');
@@ -16,11 +23,11 @@ const ImageBackground = styled.div`
   border-top-right-radius: 3rem;
   width: 100%;
   height: 30rem;
-  @media (min-width: 768px) {
+  ${[mq[1]]} {
     height: 40rem;
     background-image: url('/static/images/HeroImagemd.png');
   }
-  @media (min-width: 1024px) {
+  ${[mq[2]]} {
     height: 50rem;
     background-image: url('/static/images/HeroImagelg.png');
   }
@@ -29,11 +36,11 @@ const ImageBackground = styled.div`
 const Logo = styled.div`
   padding-top: 3rem;
   margin-left: 3rem;
-  @media (min-width: 768px) {
+  ${[mq[1]]} {
     padding-top: 7rem;
     margin-left: 7rem;
   }
-  @media (min-width: 1024px) {
+  ${[mq[2]]} {
     padding-top: 10rem;
     margin-left: 10rem;
   }
@@ -42,10 +49,10 @@ const Logo = styled.div`
     width: 50%;
     min-width: 10rem;
     max-width: 35rem;
-    @media (min-width: 768px) {
+    ${[mq[1]]} {
       width: 80%;
     }
-    @media (min-width: 1024px) {
+    ${[mq[2]]} {
       width: 100%;
     }
   }
@@ -57,11 +64,11 @@ const TextSection = styled.div`
   width: 50%;
   margin-left: 3rem;
   margin-top: 2rem;
-  @media (min-width: 768px) {
+  ${[mq[1]]} {
     width: 40%;
     margin-left: 7rem;
   }
-  @media (min-width: 1024px) {
+  ${[mq[2]]} {
     width: 100%;
     margin-left: 10rem;
   }
@@ -69,10 +76,10 @@ const TextSection = styled.div`
     font-size: 1.6rem;
     font-weight: 500;
     color: #fff;
-    @media (min-width: 768px) {
+    ${[mq[1]]} {
       font-size: 1.8rem;
     }
-    @media (min-width: 1024px) {
+    ${[mq[2]]} {
       font-size: 2.4rem;
     }
   }
@@ -82,10 +89,10 @@ const FormSearchBreed = styled.form`
   margin: 3rem 0 0 3rem;
   display: flex;
   align-content: center;
-  @media (min-width: 768px) {
+  ${[mq[1]]} {
     margin-left: 7rem;
   }
-  @media (min-width: 1024px) {
+  ${[mq[2]]} {
     margin-left: 10rem;
   }
   input {
@@ -95,10 +102,10 @@ const FormSearchBreed = styled.form`
     border: none;
     padding: 1rem 1rem;
     width: 15rem;
-    @media (min-width: 768px) {
+    ${[mq[1]]} {
       width: 20rem;
     }
-    @media (min-width: 1024px) {
+    ${[mq[2]]} {
       width: 30rem;
     }
   }
@@ -120,16 +127,15 @@ const ContainerSectionTitle = styled.div`
     color: var(--brown-text);
     font-size: 1.8rem;
     margin-top: 2rem;
-    @media (min-width: 768px) {
+    ${[mq[1]]} {
       font-size: 3rem;
     }
-    @media (min-width: 1024px) {
+    ${[mq[2]]} {
       font-size: 4.8rem;
     }
   }
 `;
 
-// TODO
 const ContainerSectionButton = styled.div`
   display: flex;
   align-items: center;
@@ -139,10 +145,10 @@ const ContainerSectionButton = styled.div`
   cursor: pointer;
   font-weight: 700;
   font-size: 1.3rem;
-  @media (min-width: 768px) {
+  ${[mq[1]]} {
     font-size: 1.5rem;
   }
-  @media (min-width: 1024px) {
+  ${[mq[2]]} {
     font-size: 1.8rem;
   }
 `;
@@ -172,12 +178,12 @@ const TextMostSearched = styled.p`
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--brown-text);
-  @media (min-width: 768px) {
+  ${[mq[1]]} {
     font-size: 1.5rem;
     padding-top: 3rem;
     margin-left: 7rem;
   }
-  @media (min-width: 1024px) {
+  ${[mq[2]]} {
     font-size: 1.8rem;
     padding-top: 5rem;
     margin-left: 10rem; 
@@ -200,38 +206,56 @@ const SectionCatsDiscover = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
-  @media (min-width: 768px) {
+  justify-items: center;
+  ${[mq[1]]} {
     grid-template-columns: repeat(4, 1fr);
+    justify-items: initial;
   }
 `;
 
 const SectionArticle = styled.section`
-  border: 1px solid red;
   padding: 7rem 0;
-  @media (min-width: 768px) {
-    display: grid;
+  display: grid;
+  grid-row-gap: 5rem;
+  ${[mq[1]]} {
+    padding: 12rem 7rem;
     grid-template-columns: repeat(2, 1fr);
   }
   ${ContainerSectionTitle} {
-    h2::before {
-      content: '';
-      display: block;
-      margin-top: 1rem;
-      width: 7rem;
-      height: 0.3rem;
-      border-radius: 3rem;
-      background-color: var(--brown-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h2 {
+      font-size: 4rem;
+      &::before {
+        content: '';
+        display: block;
+        margin-top: 1rem;
+        width: 7rem;
+        height: 0.3rem;
+        border-radius: 3rem;
+        background-color: var(--brown-text);
+      }
     }
     p {
       font-weight: 500;
+      font-size: 1.8rem;
     }
   }
 
-  .container-images {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr 1fr;
+  ${ContainerSectionButton} {
+    margin-top: 3rem;
+  }
+`;
+
+const ContainerImages = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5,minmax(0,1fr));
+  gap: 1rem;
+  max-width: 520px;
+  img {
+    width: 100%;
+    display: inline-block;
   }
 `;
 
@@ -250,6 +274,7 @@ const Home = () => {
   }, []);
 
   return (
+    <div>
       <Layout>
         <ImageBackground>
           <Logo>
@@ -296,13 +321,23 @@ const Home = () => {
               <ContainerSectionButton>Read more <i className="material-icons">arrow_right_alt</i></ContainerSectionButton>
             </Link> 
           </ContainerSectionTitle>
-          <div className="container-images">
-            <img src="/static/images/image2.png" alt=""/>
-            <img src="/static/images/image3.png" alt=""/>
-            <img src="/static/images/image1.png" alt=""/>
-          </div>
+          <ContainerImages>
+            <img src="/static/images/image2.png" alt="Image Cat" css={css`
+              grid-column: span 3/span 3;
+            `} />
+            <img src="/static/images/image3.png" alt="Image Cat" css={css`
+              grid-row: span 2/span 2;
+              grid-column: span 2/span 2;
+            `} />
+            <img src="/static/images/image1.png" alt="Image Cat" css={css`
+              grid-column: span 2/span 2;
+              grid-row: span 2/span 2;
+              grid-column-start: 2;
+            `} />
+          </ContainerImages>
         </SectionArticle>
       </Layout>
+      </div>
   )
 }
 
