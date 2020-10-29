@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from '@emotion/styled';
 
 const breakpointsMediaQuerys = [481, 769, 1025, 1201]
@@ -32,6 +33,7 @@ const ContainerImage = styled.div`
         padding-top: 1.5rem;
         font-size: 1.8rem;
         font-weight: 600;
+        cursor: pointer;
     }
 `;
 
@@ -53,7 +55,9 @@ const BreedPopularIndex = ({imagesCat}) => {
     return (  
         <ContainerImage>
             <ImageCat src={imagesCat.imageURL} alt={`image of breed cat: ${imagesCat.name}`} />
-            <p>{imagesCat.name}</p>
+            <Link href='/breeds/[name]' as={`/breeds/${imagesCat.name}`} >
+                <p>{imagesCat.name}</p>
+            </Link>
         </ContainerImage>
     );
 }

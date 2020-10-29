@@ -263,18 +263,17 @@ const Home = () => {
 
   const [popularbreeds, savePopularBreeds] = useState([]);
 
-  const {callApiCat} = useContext(CatWikiContext);
+  const {getMostSearched} = useContext(CatWikiContext);
 
   useEffect (() => {
     const consultApi = async () => {
-      let imagesPopularBreeds = await callApiCat();
+      let imagesPopularBreeds = await getMostSearched(4);
       savePopularBreeds(imagesPopularBreeds);
     }
     consultApi();
   }, []);
 
   return (
-    <div>
       <Layout>
         <ImageBackground>
           <Logo>
@@ -337,7 +336,6 @@ const Home = () => {
           </ContainerImages>
         </SectionArticle>
       </Layout>
-      </div>
   )
 }
 

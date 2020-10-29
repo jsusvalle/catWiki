@@ -62,7 +62,6 @@ const Layout = props => {
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" /> 
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                 rel="stylesheet" />
-                <link href="/static/css/app.css" rel="stylesheet" />
             </Head>
         
             <Header />
