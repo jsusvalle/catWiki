@@ -24,20 +24,17 @@ const CatWikiProvider = props => {
     const getInfoBreed = async (name) => {
         try {
             let resInfo = await axios.get(`${urlApi}/api/breeds/search?name=${name}`);
-            let resimages = await getImagesBreed(resInfo.data.infoBreed[0].id);
-            return {
-                infoBreed: resInfo.data.infoBreed[0],
-                breedImages: resimages.images
-            };
+            return resInfo.data.infoBreed;
         } catch (error) {
             console.log(error);
         }
+        
     }
 
     const getImagesBreed = async (idBreed) => {
         try {
             let res = await axios.get(`${urlApi}/api/breeds/searchimage?idBreed=${idBreed}`);
-            return res.data;
+            return res.data.images;
         } catch (error) {
             console.log(error);
         }

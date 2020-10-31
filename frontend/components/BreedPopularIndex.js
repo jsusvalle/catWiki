@@ -2,15 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
-const breakpointsMediaQuerys = [481, 769, 1025, 1201]
-
-const mq = breakpointsMediaQuerys.map(
-    bp => `@media (min-width: ${bp}px)`
-);
+import {mq} from './layouts/styles/index';
 
 const ContainerImage = styled.div`
     position: relative;
-    &:first-child::before {
+    &:first-of-type::before {
         content: '';
         display: inline;
         background-color: var(--shadow-image);

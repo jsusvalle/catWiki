@@ -14,6 +14,7 @@ const Layout = props => {
                         --background-main: rgba(227, 225, 220, 1);
                         --shadow-image: rgba(222, 198, 139, 1);
                         --text-transparency-brown: rgba(41, 21, 7, 0.6);
+                        --score-background: rgba(84, 68, 57, 1);
                     }
 
                     html {
