@@ -38,6 +38,7 @@ const Layout = props => {
                         line-height: 1.5;
                     }
                     h1, h2 {
+                        color: var(--brown-text);
                         font-weight: 700;
                     }
                     p {

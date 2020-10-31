@@ -38,7 +38,7 @@ const Home = ({imagesPopularBreeds}) => {
               <h2>66+ Breeds For you to discover</h2>
             </ContainerSectionTitle>
             <div className="container-see-more">
-              <Link href="/">
+              <Link href="/mostsearchedbreeds">
                 <ContainerSectionButton>See more <i className="material-icons">arrow_right_alt</i></ContainerSectionButton>
               </Link> 
             </div>
