@@ -77,7 +77,7 @@ export const TextSection = styled.div`
   }
 `;
 
-export const FormSearchBreed = styled.form`
+export const FormSearchBreed = styled.div`
   margin: 3rem 0 0 3rem;
   display: flex;
   align-content: center;
@@ -92,13 +92,16 @@ export const FormSearchBreed = styled.form`
     border-top-left-radius: 3rem;
     border-bottom-left-radius: 3rem;
     border: none;
-    padding: 1rem 1rem;
+    padding: 2rem 1.5rem;
     width: 15rem;
+    font-size: 1.4rem;
     ${[mq[1]]} {
       width: 20rem;
+      font-size: 1.6rem;
     }
     ${[mq[2]]} {
       width: 30rem;
+      font-size: 1.8rem;
     }
   }
   button {
@@ -110,6 +113,27 @@ export const FormSearchBreed = styled.form`
     i {
       width: 5rem;
     }
+  }
+`;
+
+export const ModalResultsSearch = styled.div`
+  width: 20rem;
+  height: 25rem;
+  border-radius: 3rem;
+  background-color: #ffff;
+  position: relative;
+  margin: 2rem 0 0 3rem;
+  overflow-y: scroll;
+  display: block;
+  scrollbar-width: thin;          
+  scrollbar-color: var(--background-main) #ffff;   
+  ${[mq[1]]} {
+    width: 25rem;
+    margin-left: 7rem;
+  }
+  ${[mq[2]]} {
+    width: 35rem;
+    margin-left: 10rem;
   }
 `;
 

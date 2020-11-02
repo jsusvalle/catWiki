@@ -13,8 +13,13 @@
     "@emotion/styled": "^10.0.27",
     "axios": "^0.20.0",
     "babel-plugin-emotion": "^10.0.33",
-    "next": "^9.5.5",
+    "next": "^10.0.0",
     "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react-dom": "16.14.0",
+    "watchpack-chokidar2": "^2.0.0"
+  },
+  "devDependencies": {
+    "mkdirp": "^1.0.4",
+    "watchpack": "^2.0.1"
   }
 }

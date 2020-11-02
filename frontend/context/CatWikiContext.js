@@ -12,6 +12,15 @@ const CatWikiProvider = props => {
 
     const urlApi = 'https://cat-wiki-api.herokuapp.com';
 
+    const getByNameOfBreed = async (name) => {
+        try {
+            let res = await axios.get(`${urlApi}/api/breeds/searchbyname?term=${name}`);
+            return res.data.breeds;
+        } catch (error) {
+            console.log(error);
+        }
+    } 
+
     const getMostSearched = async (limit) => {
         try {
             let res = await axios.get(`${urlApi}/api/breeds/mostsearched?limit=${limit}`);
@@ -43,6 +52,7 @@ const CatWikiProvider = props => {
     return (  
         <CatWikiContext.Provider
             value={{
+                getByNameOfBreed,
                 getMostSearched,
                 getInfoBreed,
                 getImagesBreed

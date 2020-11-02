@@ -28,7 +28,8 @@ const MostSearchedBreeds = () => {
 
     return (  
         <Layout>
-            <h1 css={css`margin-bottom: 5rem;`}>Top 10 most searched breeds</h1>
+            <h1 css={css`margin-bottom: 5rem;`}
+            >Top 10 most searched breeds</h1>
 
             {popularbreeds.map((breed, index) => (
                 <TopMostSearched 

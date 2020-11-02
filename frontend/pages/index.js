@@ -4,16 +4,27 @@ import { css } from '@emotion/core';
 import axios from 'axios';
 
 import Layout from '../components/layouts/Layout';
-import {ImageBackground, Logo, TextSection, FormSearchBreed, ContainerSectionTitle, ContainerSectionButton, SectionMostSearched, TextMostSearched, SectionCatsDiscover, SectionArticle, ContainerImages} from '../components/layouts/styles/index';
+import {ImageBackground, Logo, TextSection, FormSearchBreed, ModalResultsSearch, ContainerSectionTitle, ContainerSectionButton, SectionMostSearched, TextMostSearched, SectionCatsDiscover, SectionArticle, ContainerImages} from '../components/layouts/styles/index';
+import ResultsSearch from '../components/ResultsSearch';
 import BreedPopularIndex from '../components/BreedPopularIndex';
 
 import {CatWikiContext} from '../context/CatWikiContext';
 
 const Home = ({imagesPopularBreeds}) => {
 
-  // const [popularbreeds, savePopularBreeds] = useState([]);
+  const [term, saveTerm] = useState('');
+  const [breedsearched, getBreedSearched] = useState([]);
 
-  // const {getMostSearched} = useContext(CatWikiContext);
+  const {getByNameOfBreed} = useContext(CatWikiContext);
+
+  useEffect(() => {
+    if(term.trim() === '') return;
+
+    (async () => {
+      let res = await getByNameOfBreed(term.trim());
+      getBreedSearched(res);
+    })();
+  }, [term]);
 
   return (
       <Layout>
@@ -25,9 +36,19 @@ const Home = ({imagesPopularBreeds}) => {
             <p>Get to know more about your cat breed</p>
           </TextSection>
           <FormSearchBreed>
-            <input type="search" name="search" placeholder="Enter your breed" />
+            <input type="search" name="search" placeholder="Enter your breed" onChange={e => saveTerm(e.target.value)} />
             <button><i className="material-icons">search</i></button>
           </FormSearchBreed>
+          {breedsearched.length !== 0 
+            ? <ModalResultsSearch>
+                {breedsearched.map(termBreed => (
+                  <ResultsSearch 
+                    key={termBreed.id}
+                    name={termBreed.name}
+                  />
+                ))}
+              </ModalResultsSearch>
+            : null}
         </ImageBackground>
 
         <SectionMostSearched>
