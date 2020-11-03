@@ -95,6 +95,10 @@ export const FormSearchBreed = styled.div`
     padding: 2rem 1.5rem;
     width: 15rem;
     font-size: 1.4rem;
+    &:focus {
+      outline: none;
+      outline-width: 0;
+    }
     ${[mq[1]]} {
       width: 20rem;
       font-size: 1.6rem;
@@ -118,15 +122,14 @@ export const FormSearchBreed = styled.div`
 
 export const ModalResultsSearch = styled.div`
   width: 20rem;
-  height: 25rem;
+  height: auto;
+  max-height: 25rem;
   border-radius: 3rem;
   background-color: #ffff;
   position: relative;
   margin: 2rem 0 0 3rem;
-  overflow-y: scroll;
   display: block;
-  scrollbar-width: thin;          
-  scrollbar-color: var(--background-main) #ffff;   
+  overflow-y: hidden;
   ${[mq[1]]} {
     width: 25rem;
     margin-left: 7rem;
@@ -134,6 +137,24 @@ export const ModalResultsSearch = styled.div`
   ${[mq[2]]} {
     width: 35rem;
     margin-left: 10rem;
+  }
+`;
+
+export const ContainerResultsSearch = styled.div`
+  height: auto;
+  max-height: 25rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;          
+  scrollbar-color: var(--background-main) #ffff;   
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--background-main);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ffff;
+    border-radius: 5px;
   }
 `;
 

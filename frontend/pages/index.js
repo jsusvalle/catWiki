@@ -1,10 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react'
 import Link from 'next/link';
+import Image from 'next/image';
 import { css } from '@emotion/core';
 import axios from 'axios';
 
 import Layout from '../components/layouts/Layout';
-import {ImageBackground, Logo, TextSection, FormSearchBreed, ModalResultsSearch, ContainerSectionTitle, ContainerSectionButton, SectionMostSearched, TextMostSearched, SectionCatsDiscover, SectionArticle, ContainerImages} from '../components/layouts/styles/index';
+import {ImageBackground, Logo, TextSection, FormSearchBreed, ModalResultsSearch, ContainerSectionTitle, ContainerSectionButton, SectionMostSearched, TextMostSearched, SectionCatsDiscover, SectionArticle, ContainerImages, ContainerResultsSearch} from '../components/layouts/styles/index';
+import LoadingSearch from '../components/LoadingSearch';
 import ResultsSearch from '../components/ResultsSearch';
 import BreedPopularIndex from '../components/BreedPopularIndex';
 
@@ -12,17 +14,23 @@ import {CatWikiContext} from '../context/CatWikiContext';
 
 const Home = ({imagesPopularBreeds}) => {
 
+  const [charging, getCharging] = useState(false);
   const [term, saveTerm] = useState('');
   const [breedsearched, getBreedSearched] = useState([]);
 
   const {getByNameOfBreed} = useContext(CatWikiContext);
 
   useEffect(() => {
-    if(term.trim() === '') return;
+    if(term.trim() === '') {
+      getBreedSearched([]);
+      return;
+    } 
 
+    getCharging(true);
     (async () => {
       let res = await getByNameOfBreed(term.trim());
       getBreedSearched(res);
+      getCharging(false);
     })();
   }, [term]);
 
@@ -30,23 +38,31 @@ const Home = ({imagesPopularBreeds}) => {
       <Layout>
         <ImageBackground>
           <Logo>
-            <img src="/static/images/CatwikiLogo.svg" alt="Logo CatWiki" />
+            <Image 
+              src="/static/images/CatwikiLogo.svg" 
+              alt="Logo CatWiki"
+              unsized="true"
+              loading="eager" />
           </Logo>
           <TextSection>
             <p>Get to know more about your cat breed</p>
           </TextSection>
           <FormSearchBreed>
-            <input type="search" name="search" placeholder="Enter your breed" onChange={e => saveTerm(e.target.value)} />
-            <button><i className="material-icons">search</i></button>
+            <input type="text" name="search" placeholder="Enter your breed" autoComplete="off" onChange={e => saveTerm(e.target.value)} />
+            <button>{charging 
+              ? <LoadingSearch />
+              : <i className="material-icons">search</i> }</button>
           </FormSearchBreed>
           {breedsearched.length !== 0 
             ? <ModalResultsSearch>
-                {breedsearched.map(termBreed => (
-                  <ResultsSearch 
-                    key={termBreed.id}
-                    name={termBreed.name}
-                  />
-                ))}
+                <ContainerResultsSearch>
+                  {breedsearched.map(termBreed => (
+                    <ResultsSearch 
+                      key={termBreed.id}
+                      name={termBreed.name}
+                    />
+                  ))}
+                </ContainerResultsSearch>
               </ModalResultsSearch>
             : null}
         </ImageBackground>
