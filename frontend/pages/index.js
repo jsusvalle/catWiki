@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
 import Link from 'next/link';
-import Image from 'next/image';
 import { css } from '@emotion/core';
 import axios from 'axios';
 
@@ -38,11 +37,7 @@ const Home = ({imagesPopularBreeds}) => {
       <Layout>
         <ImageBackground>
           <Logo>
-            <Image 
-              src="/static/images/CatwikiLogo.svg" 
-              alt="Logo CatWiki"
-              unsized="true"
-              loading="eager" />
+            <img src="/static/images/CatwikiLogo.svg" alt="Logo CatWiki"/>
           </Logo>
           <TextSection>
             <p>Get to know more about your cat breed</p>

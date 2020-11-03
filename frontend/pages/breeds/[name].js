@@ -4,10 +4,15 @@ import {useRouter} from 'next/router';
 import {CatWikiContext} from '../../context/CatWikiContext';
 
 import Layout from '../../components/layouts/Layout';
-import Loading from '../../components/LoadingPage';
+import LoadingPage from '../../components/LoadingPage';
 import Error404 from '../../components/layouts/Error404';
 import ScoreBreed from '../../components/ScoreBreed'; 
-import {mq} from '../../components/layouts/styles/index';
+
+const breakpointsMediaQuerys = [481, 769, 1025, 1201]
+
+const mq = breakpointsMediaQuerys.map(
+    bp => `@media (min-width: ${bp}px)`
+)
 
 const ContainerInfoBreed = styled.div`
     ${[mq[1]]} {
@@ -121,7 +126,7 @@ const BreedInfo = () => {
             }
     }, [name]);
 
-    if(Object.keys(databreed).length === 0 && !error) return <Loading />;
+    if(Object.keys(databreed).length === 0 && !error) return <LoadingPage />;
 
     const {description, temperament, origin, life_span, adaptability, affection_level, child_friendly, grooming, intelligence, health_issues, social_needs, stranger_friendly} = databreed;
 
