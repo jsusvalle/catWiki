@@ -1,8 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styled from '@emotion/styled';
 
-import {mq} from './layouts/styles/index';
+const breakpointsMediaQuerys = [481, 769, 1025, 1201]
+
+const mq = breakpointsMediaQuerys.map(
+    bp => `@media (min-width: ${bp}px)`
+)
 
 const ContainerImage = styled.div`
     position: relative;
@@ -19,7 +24,7 @@ const ContainerImage = styled.div`
         ${[mq[1]]} {
             top: calc(50% - 8rem);
         }
-        ${[mq[2]]} {
+        ${[mq[3]]} {
             top: calc(50% - 8rem);
             height: 15rem;
         }

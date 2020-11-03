@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import {CatWikiContext} from '../../context/CatWikiContext';
 
 import Layout from '../../components/layouts/Layout';
-import Loading from '../../components/Loading';
+import Loading from '../../components/LoadingPage';
 import Error404 from '../../components/layouts/Error404';
 import ScoreBreed from '../../components/ScoreBreed'; 
 import {mq} from '../../components/layouts/styles/index';

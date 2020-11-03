@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const breakpointsMediaQuerys = [481, 769, 1025, 1201]
 
-export const mq = breakpointsMediaQuerys.map(
+const mq = breakpointsMediaQuerys.map(
   bp => `@media (min-width: ${bp}px)`
 )
 

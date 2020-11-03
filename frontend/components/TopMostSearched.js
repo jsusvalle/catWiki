@@ -2,7 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
-import {mq} from '../components/layouts/styles/index';
+const breakpointsMediaQuerys = [481, 769, 1025, 1201]
+
+const mq = breakpointsMediaQuerys.map(
+    bp => `@media (min-width: ${bp}px)`
+)
 
 const ContainerImage = styled.div`
     margin-bottom: 6rem;

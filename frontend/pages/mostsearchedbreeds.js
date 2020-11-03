@@ -2,7 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import {css} from '@emotion/core';
 
 import Layout from '../components/layouts/Layout';
-import Loading from '../components/Loading';
+import LoadingPage from '../components/LoadingPage';
 import TopMostSearched from '../components/TopMostSearched';
 import {CatWikiContext} from '../context/CatWikiContext';
 
@@ -24,7 +24,7 @@ const MostSearchedBreeds = () => {
         })();
     }, []);
 
-    if(popularbreeds.length === 0 && !error) return <Loading />;
+    if(popularbreeds.length === 0 && !error) return <LoadingPage />;
 
     return (  
         <Layout>

@@ -49,7 +49,7 @@ const Home = ({imagesPopularBreeds}) => {
           </TextSection>
           <FormSearchBreed>
             <input type="text" name="search" placeholder="Enter your breed" autoComplete="off" onChange={e => saveTerm(e.target.value)} />
-            <button>{charging 
+            <button>{ charging 
               ? <LoadingSearch />
               : <i className="material-icons">search</i> }</button>
           </FormSearchBreed>
