@@ -90,7 +90,7 @@ const Home = ({imagesPopularBreeds}) => {
           <ContainerSectionTitle>
             <h2>Why should you have a cat?</h2>
             <p>Having a cat around you can actually trigger the release of calming chemicals in your body which lower your stress and anxiety leves</p>
-            <Link href="/">
+            <Link href="https://www.mentalfloss.com/article/635663/offbeat-november-holidays?utm_content=infinitescroll2">
               <ContainerSectionButton>Read more <i className="material-icons">arrow_right_alt</i></ContainerSectionButton>
             </Link> 
           </ContainerSectionTitle>
